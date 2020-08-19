@@ -1,0 +1,957 @@
+@import "config" // Always at the beginning
+
+// STYLES OF THE MAIN SECTION
+.main
+    &__top,
+    &__bottom
+        display: flex
+    &__bottom .main__right
+    &__left
+        &--yellow
+            text-align: center
+            background: $yellow
+    &__right
+        display: flex
+        width: 100%
+        &--grey
+            background: #f6f6f6
+    &__wrapper
+        position: relative
+        display: flex
+        justify-content: space-between
+        align-items: center
+        padding: 6.5% 0
+        max-width: 1350px
+        width: 100%
+
+.start
+    &__date
+        padding: 46px 14px
+        margin: 0 auto
+        max-width: 157px
+        font-size: 32px
+        font-weight: 900
+        letter-spacing: 3px
+        text-transform: uppercase
+        color: #000
+        border: 8px solid $dark-blue
+    &__sub
+        overflow: hidden
+        margin: 15px auto 0
+        max-width: 157px
+        max-height: 42px
+        font-weight: bold
+        text-transform: uppercase
+        color: #000
+
+.hamburger
+    position: absolute
+    z-index: 100
+    display: block
+    background: transparent
+    border: none
+    &:focus
+        outline: none
+    &--active
+        .hamburger__inner
+            background: #fff
+            &:first-child
+                width: 0
+                opacity: 0
+            &:nth-child(2)
+                position: absolute
+                margin: 0
+                transform: rotate(-45deg)
+            &:last-child
+                transform: rotate(45deg)
+    &__inner
+        display: block
+        width: 26px
+        height: 3px
+        background: #000
+        transition: all 0.5s ease
+        &:nth-child(2)
+            margin: 6px 0
+
+.overlay
+    position: fixed
+    top: 0
+    right: 0
+    z-index: 100
+    transform-origin: right top
+    transform: scale(0)
+    overflow: hidden
+    visibility: hidden
+    height: 100%
+    width: 100%
+    opacity: 0
+    background: #000
+    transition: all 0.5s ease-in-out
+    &--open
+        transform: scale(1)
+        visibility: visible
+        opacity: 0.99
+        .nav__item
+            display: block
+            animation: fadeInRight 0.5s cubic-bezier(0.42, 0.83, 0.7, 1.5) forwards
+            animation-delay: 0.4s
+            transform-origin: bottom
+            &:nth-of-type(2)
+                animation-delay: 0.5s
+            &:nth-of-type(3)
+                animation-delay: 0.6s
+            &:nth-of-type(4)
+                animation-delay: 0.7s
+            &:nth-of-type(5)
+                animation-delay: 0.8s
+
+.nav
+    position: absolute
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -50%)
+    text-align: center
+    &__item
+        position: relative
+        width: 100%
+        opacity: 0
+    &__item + &__item
+        margin-top: 45px
+    &__link
+        display: inline-block
+        font-size: 18px
+        font-weight: bold
+        color: #fff
+        letter-spacing: 4px
+        text-transform: uppercase
+        &:hover
+            color: $yellow
+
+.offer
+    &__subtitle
+        font-weight: bold
+        color: $light-grey
+        letter-spacing: 3px
+        text-transform: uppercase
+    &__description
+        max-width: 590px
+        width: 100%
+
+.course-info
+    &__item
+        display: flex
+        align-items: center
+        overflow: hidden
+        max-width: 290px
+    &__title
+        overflow: hidden
+        max-height: 21px
+        text-transform: uppercase
+    &__description
+        overflow: hidden
+        max-height: 42px
+
+.schedule
+    &__wrapper
+        display: flex
+        justify-content: space-between
+        align-items: center
+    &__item
+        display: flex
+        justify-content: space-between
+        align-items: center
+        padding: 20px 30px
+        min-width: 225px
+        height: 76px
+        background: #fff
+        cursor: pointer
+        transition: all 0.5s ease
+        &:hover
+            box-shadow: 0 2px 14px rgba(0,0,0,0.1)
+    &__day
+        font-size: 35px
+        font-weight: bold
+        text-transform: uppercase
+        color: #000
+    &__time
+        font-weight: bold
+        color: $light-grey
+    &__time--day,
+    &__time--night
+        display: block
+        position: relative
+        &::before
+            content: ''
+            display: inline-block
+            margin-right: 10px
+            width: 15px
+            height: 15px
+            vertical-align: middle
+    &__time--day
+        &::before
+            background: url(../img/dist/icon-day.svg) no-repeat center
+    &__time--night
+        &::before
+            background: url(../img/dist/icon-night.svg) no-repeat center
+    &__info-icon
+        display: block
+        width: 32px
+        height: 32px
+        font-size: 20px
+        font-weight: bold
+        text-align: center
+        border: 2px solid #000
+        border-radius: 50%
+        transition: all 0.5s ease
+        cursor: pointer
+        &:hover
+            color: #e94a4a
+            border: 2px solid #e94a4a
+            .schedule__info-block
+                display: block
+    &__info-block
+        position: absolute
+        top: 50%
+        transform: translateY(-50%)
+        display: none
+        padding: 30px
+        max-width: 340px
+        font-size: 14px
+        font-weight: 300
+        text-align: left
+        color: $primary-color
+        background: #fff
+        border: 1px solid #c6c6c6
+
+// STYLES OF THE ACCORDIONS SECTION
+.accordion
+    background: #f8f8f8
+    &__item
+        background: #fff
+        &--active .accordion__content
+            display: block
+            animation: sweep 1s ease-in-out
+        &--active .accordion__detail::after
+            background: $yellow url(../img/dist/accordion-arrow.svg) no-repeat center
+            transform: rotate(180deg)
+    &__item + &__item
+        margin-top: 40px
+    &__trigger
+        display: flex
+        justify-content: space-between
+        align-items: center
+        border-top: 1px solid rgba(#000, 0.1)
+        border-bottom: 1px solid rgba(#000, 0.1)
+        transition: all 0.5s ease
+        cursor: pointer
+        &:hover
+            box-shadow: 0 2px 14px rgba(0,0,0,0.1)
+    &__img
+        display: flex
+        justify-content: center
+        align-items: center
+        height: 159px
+        background-color: $yellow
+    &__title
+        font-size: 18px
+        font-weight: bold
+        letter-spacing: 2px
+        text-transform: uppercase
+    &__detail
+        font-size: 15px
+        font-weight: bold
+        letter-spacing: 3px
+        text-transform: uppercase
+        color: #000
+        &::after
+            content: ''
+            display: inline-block
+            margin-left: 15px
+            margin-right: 5px
+            width: 33px
+            height: 33px
+            vertical-align: middle
+            background: url(../img/dist/accordion-arrow.svg) no-repeat center
+            transition: all 0.5s ease
+    &__content
+        display: none
+        transition: all 0.5s ease
+    &__subtitle
+        margin-bottom: 10px
+        font-size: 15px
+        font-weight: bold
+        text-transform: uppercase
+    &__description
+        padding-bottom: 50px
+
+// STYLES OF THE TIMETABLE SECTION
+.timetable
+    padding: 190px 0
+    background: #f7f7f7
+    & .section-heading
+        top: 200px
+    &__wrapper
+        margin: 0 auto
+        max-width: 1350px
+        background: #fff
+    &__table
+        width: 100%
+        table-layout: fixed
+        text-align: right
+        border-collapse: separate
+        border-spacing: 10px
+        th:nth-child(even)
+            text-transform: uppercase
+    &__tbody
+        tr:nth-child(odd)
+            td
+                background: #f5f5f5
+
+// STYLES OF THE FORMAT SECTION
+.format
+    padding: 14.5% 0 12.5%
+    border-bottom: 1px solid #e9e9eb
+    &__list
+        display: flex
+        justify-content: space-between
+        align-items: center
+        margin: 80px auto 0
+    &__item
+        position: relative
+        &::before
+            content: ''
+            position: absolute
+            transform: translate(0, -50%)
+            z-index: -1
+            width: 126px
+            height: 126px
+            background: $yellow
+            border-radius: 50%
+        &:first-child::before
+            bottom: -10%
+            left: -25%
+        &:last-child::before
+            top: 20%
+            right: -35%
+    &__img
+        height: 160px
+    &__type
+        font-size: 17px
+        font-weight: bold
+        letter-spacing: 3px
+        text-align: center
+        text-transform: uppercase
+        color: #000
+    &__description
+        margin: 130px auto 0
+        text-align: center
+
+// STYLES OF THE REVIEWS SECTION
+.swiper-container
+    max-width: 1200px
+    width: 80%
+
+.swiper-bottom
+    display: flex
+    align-items: center
+    justify-content: space-between
+    margin-top: 115px
+
+.swiper-pagination-fraction
+    font-size: 18px
+    font-weight: 500
+    color: #c8c8c8
+
+.swiper-pagination-current
+    font-size: 30px
+    color: #000
+
+.swiper-buttons
+    display: flex
+    align-items: center
+
+.swiper-button-prev,
+.swiper-button-next
+    position: static
+    height: 36px
+    width: 36px
+    background: $yellow
+    background-repeat: no-repeat
+    background-position: center
+    border: none
+
+.swiper-button-disabled
+    background-color: #fff
+
+.swiper-button-prev
+    background-image: url(../img/dist/arrow-left.svg)
+
+.swiper-button-next
+    margin-left: 10px
+    background-image: url(../img/dist/arrow-right.svg)
+
+.reviews
+    border-bottom: 1px solid #e9e9eb
+    &__wrapper
+        display: flex
+        justify-content: space-around
+    &__photo
+        max-width: 134px
+        max-height: 134px
+    &__content
+        max-width: 720px
+    &__subtitle
+        font-weight: 400
+        color: #b4b4b4
+
+// STYLES OF THE CONTACTS SECTION
+.contacts
+    &__wrapper
+        display: flex
+    &__content
+        margin-left: 12.5%
+    &__top
+        display: flex
+        justify-content: space-between
+        padding-top: 100px
+    &__icon
+        margin-right: 10.5%
+        margin-left: auto
+        min-width: 28px
+        height: 42px
+    &__icon--circle
+        position: relative
+        &::before
+            content: ''
+            position: absolute
+            right: -60%
+            bottom: -20%
+            z-index: -1
+            width: 41px
+            height: 41px
+            background: $yellow
+            border-radius: 50%        
+
+.social
+    margin-top: 60px
+    &__item + &__item
+        margin-top: 15px
+    &__link
+        display: inline-block
+        font-weight: bold
+        color: #000
+        text-transform: uppercase
+        &:hover
+            color: $yellow
+        &::before
+            content: ''
+            display: inline-block
+            margin-right: 20px
+            width: 30px
+            height: 30px
+            vertical-align: middle
+    &__link--phone
+        &::before
+            background: url(../img/dist/phone-icon.svg) no-repeat center
+    &__link--email
+        &::before
+            background: url(../img/dist/email-icon.svg) no-repeat center
+    &__link--telegram
+        &::before
+            background: url(../img/dist/telegram-icon.svg) no-repeat center
+
+.contact-form
+    margin-top: 60px
+    max-width: 660px
+    width: 75%
+    &__input
+        display: block
+        padding: 25px 0
+        width: 100%
+        font-weight: bold
+        text-transform: uppercase
+        color: #000
+        background: transparent
+        border: none
+        border-bottom: 4px solid #f0f0f0
+        &:focus
+            outline: none
+        &::placeholder
+            color: #000
+    &__input + &__input
+        margin-top: 5px
+    &__wrapper
+        display: flex
+        justify-content: space-between
+        margin-top: 50px
+    &__question
+        font-weight: bold
+        letter-spacing: 3px
+        text-transform: uppercase
+        color: #000
+    &__block
+        display: flex
+    &__group + &__group
+        margin-left: 20px
+    &__radio
+        position: absolute
+        opacity: 0
+        &:checked + .contact-form__new-radio::before
+            opacity: 1
+    &__new-radio
+        display: inline-block
+        position: relative
+        margin-right: 15px
+        width: 18px
+        height: 18px
+        vertical-align: middle
+        background: #f0f0f0
+        border-radius: 50%
+        &::before
+            content: ''
+            display: block
+            position: absolute
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
+            width: 18px
+            height: 18px
+            opacity: 0
+            background: $yellow
+            border-radius: 50%
+            transition: all 0.5s ease
+    &__btn
+        display: block
+        padding: 20px 45px
+        margin-top: 30px
+        font-weight: bold
+        text-transform: uppercase
+        background: $yellow
+        border: none
+        transition: all 0.5s ease
+        &:hover
+            transform: scale(0.95)
+
+// ANIMATION
+@keyframes fadeInRight
+    0%
+        left: 50px
+        opacity: 0
+    100%
+        left: 0
+        transform: rotate(0deg)
+        opacity: 1
+
+@keyframes sweep
+  0%
+      opacity: 0
+  100%
+      opacity: 1
+
+// MEDIA QUERIES
+@media (min-width: 1600px)
+    .accordion
+        &__img
+            width: 161px
+        &__info
+            margin-left: 100px
+            width: 920px
+        &__title
+            width: 400px
+        &__specification
+            width: 380px
+            margin-left: 100px
+        &__detail
+            margin-right: 100px
+            margin-left: auto
+        &__content
+            padding: 110px 60px 60px 161px
+    .format
+        &__list
+            width: 45%
+    .contact-form
+        &__question
+            width: 233px
+
+@media (max-width: 1599px)
+    .contact-form
+        &__wrapper
+            flex-direction: column
+        &__block
+            margin-top: 15px
+
+@media (min-width: 1200px) and (max-width: 1599px)
+    .accordion
+        &__img
+            width: 12%
+        &__info
+            margin-left: 50px
+            width: 45%
+        &__title,
+        &__specification
+            width: 50%
+        &__detail
+            margin-left: 10%
+            margin-right: 4%
+        &__content
+            padding: 110px 60px 60px 12%
+    .timetable
+        &__wrapper
+            width: 85%
+    .format
+        &__list
+            width: 60%
+
+@media (min-width: 1200px)
+    .main
+        &__left
+            width: 25%
+    .offer
+        width: 55%
+        &__title
+            width: 50%
+    .course-info
+        &__item + &__item
+            margin-top: 60px
+    .schedule
+        &__wrapper
+            width: 80%
+    .timetable
+        &__thead
+            th:first-child
+                width: 21%
+    .format
+        &__description
+            width: 39%
+    .reviews
+        &__description
+            margin-top: 50px
+    .contact-form
+        &__btn
+            margin-left: auto
+
+@media (max-width: 1199px)
+    .main
+        &__wrapper
+            flex-wrap: wrap
+    .course-info
+        display: flex
+        justify-content: space-between
+        align-items: center
+        width: 100%
+    .schedule
+        &__wrapper
+            flex-direction: column
+        &__item + &__item
+            margin-top: 15px
+    .contact-form
+        &__btn
+            width: 100%
+
+@media (min-width: 992px) and (max-width: 1199px)
+    .main
+        &__left
+            width: 35%
+    .schedule
+        &__item
+            width: 275px
+    .accordion
+        &__img
+            width: 12%
+        &__info
+            width: 50%
+        &__title,
+        &__specification
+            width: 50%
+        &__content
+            padding: 110px 60px 60px 12%
+    .timetable
+        &__thead
+            th:first-child
+                width: 37%
+    .format
+        &__list
+            width: 75%
+
+@media (max-width: 991px)
+    .hamburger
+        top: 20px
+        right: 20px
+    .contacts
+        &__wrapper
+            flex-direction: column-reverse
+        &__left,
+        &__right
+            width: 100%
+        &__left
+            iframe
+                width: 100%
+    .social
+        margin-bottom: 50px
+
+@media (min-width: 992px)
+    .hamburger
+        top: 40px
+        right: 100px
+    .offer
+        &__description
+            margin-top: 50px
+    .course-info
+        margin-right: 50px
+        &__img
+            margin-right: 55px
+    .accordion
+        &__info
+            display: flex
+            align-items: center
+        &__title
+            overflow: hidden
+            max-height: 81px
+        &__specification
+            overflow: hidden
+            margin-left: 10px
+            max-height: 126px
+        &__detail
+            margin-left: 5%
+            margin-right: 3%
+    .timetable
+        &__wrapper
+            padding: 150px 80px 85px
+    .contacts
+        &__content
+            margin-bottom: 100px
+        &__left
+            width: 55%
+            border-right: 1px solid #e9e9eb
+        &__right
+            width: 45%
+    .contact-form
+        margin-bottom: 170px
+
+@media (min-width: 768px)
+    .main
+        &__wrapper
+            padding-right: 2%
+            padding-left: 6.5%
+    .start
+        padding: 120px 0
+        &__title
+            margin: 0 auto
+            width: 220px
+    .offer
+        &__description
+            margin-top: 50px
+    .schedule
+        &__info-icon
+            margin-right: 100px
+        &__info-block
+            right: 185px
+    .format
+        &__type
+            margin-top: 50px
+    .reviews
+        &__content
+            width: 70%
+
+@media (min-width: 768px) and (max-width: 1199px)
+    .accordion
+        &__info
+            margin-left: 20px
+        &__detail
+            &::after
+                margin-left: 10px
+    .timetable
+        &__wrapper
+            width: 80%
+    .format
+        &__description
+            width: 55%
+    .reviews
+        &__description
+            margin-top: 20px
+
+@media (min-width: 768px) and (max-width: 991px)
+    .main
+        &__left
+            width: 50%
+    .course-info
+        &__item
+            width: 45%
+    .accordion
+        &__img
+            width: 15%
+        &__info
+            width: 45%
+        &__title,
+        &__specification
+            width: 100%
+        &__title
+            overflow: hidden
+            max-height: 54px
+        &__specification
+            overflow: hidden
+            display: -webkit-box
+            -webkit-line-clamp: 4
+            -webkit-box-orient: vertical
+            margin-top: 5px
+            max-height: 84px
+        &__detail
+            width: 40%
+            margin-left: 3%
+            margin-right: 1%
+        &__content
+            padding: 80px 60px 30px 15%
+    .timetable
+        &__thead
+            th:first-child
+                width: 45%
+    .format
+        &__list
+            width: 85%
+
+@media (max-width: 767px)
+    .main
+        &__top,
+        &__bottom
+            flex-wrap: wrap
+        &__left
+            width: 100%
+        &__wrapper
+            padding-right: 4%
+            padding-left: 4%
+    .start
+        padding: 40px 0
+        &__title
+            margin-left: 4%
+    .offer
+        margin-top: 5.5%
+        &__description
+            margin-top: 20px
+    .course-info
+        flex-wrap: wrap
+        &__item
+            width: 47%
+    .schedule
+        &__wrapper
+            padding: 25px 0
+    .accordion
+        &__trigger
+            flex-direction: column
+        &__img
+            width: 100%
+        &__info
+            width: 90%
+            text-align: center
+        &__title,
+        &__specification
+            width: 100%
+        &__title
+            overflow: hidden
+            margin-top: 15px
+            max-height: 54px
+        &__specification
+            overflow: hidden
+            display: -webkit-box
+            -webkit-line-clamp: 4
+            -webkit-box-orient: vertical
+            margin: 10px 0
+            max-height: 84px
+        &__detail
+            margin-bottom: 15px
+            width: 100%
+            text-align: center
+            &::after
+                margin-left: 10px
+        &__content
+            padding: 50px 10% 0
+            text-align: center
+    .timetable
+        &__wrapper
+            padding: 7%
+            width: 100%
+        &__thead
+            th:first-child
+                width: 40%
+    .format
+        &__list
+            flex-direction: column
+        &__divider
+            padding: 90px 0
+            transform: rotate(90deg)
+            svg
+                width: 149px
+        &__type
+            margin-top: 25px
+        &__description
+            width: 75%
+    .reviews
+        &__wrapper
+            flex-direction: column
+            text-align: center
+        &__photo
+            margin: 0 auto 15px
+        &__description
+            margin-top: 25px
+
+@media (min-width: 576px) and (max-width: 991px)
+    .course-info
+        &__img
+            margin-right: 20px
+
+@media (min-width: 576px) and (max-width: 767px)
+    .schedule
+        &__info-block
+            right: 95px
+
+@media (min-width: 576px)
+    .main
+        margin-bottom: 150px
+    .timetable
+        th
+            padding: 50px 35px 0 0
+        td
+            padding: 10px 35px
+    .swiper-container
+        padding: 200px 0 140px
+
+@media (max-width: 575px)
+    .main
+        margin-bottom: 50px
+        &__bottom .main__wrapper
+            flex-direction: column
+    .offer
+        text-align: center
+    .course-info
+        flex-direction: column
+        margin-top: 30px
+        &__item
+            flex-direction: column
+            text-align: center
+        &__item + &__item
+            margin-top: 30px
+        &__img
+            margin-bottom: 15px
+    .start
+        margin-top: 25px
+        &__title
+            text-align: center
+    .schedule
+        &__info
+            margin-bottom: 25px
+        &__info-block
+            top: 58%
+            left: 50%
+            transform: translate(-50%, -50%)
+            width: 90%
+    .timetable
+        &__wrapper
+            padding: 10%
+            width: 100%
+        &__table
+            td
+                overflow-y: scroll
+                padding: 6px 6px
+                max-height: 23px
+                white-space: nowrap
+    .swiper-container
+        padding: 100px 0 70px

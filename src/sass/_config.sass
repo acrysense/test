@@ -1,0 +1,115 @@
+// VARIABLES SECTION
+$gothampro: 'Gotham Pro', sans-serif // Gotham Pro font-family
+$gothampro-narrow: 'Gotham Pro Narrow', sans-serif // Gotham Pro Narrow font-family
+$primary-font-size: 14px // Body font-size
+$primary-color: #636363 // Body text color
+$yellow: #ffe409 // Yellow color
+$light-grey: #afafaf // Light grey color
+$dark-blue: #1f3037 // Dark blue color
+
+// FONTS LOAD SECTION
+@mixin font($fname, $fstyle, $fweight, $furl1, $furl2, $furl3)
+	@font-face
+		font-family: $fname
+		font-style: $fstyle
+		font-weight: $fweight
+		font-display: swap
+		src: local($fname), url($furl1) format('woff2'), url($furl2) format('woff'), url($furl3) format('embedded-opentype')
+
+@include font('Gotham Pro', normal, 400, '../fonts/GothamPro.woff2', '../fonts/GothamPro.woff', '../fonts/GothamPro.eot')
+@include font('Gotham Pro', italic, 400, '../fonts/GothamPro-Italic.woff2', '../fonts/GothamPro-Italic.woff', '../fonts/GothamPro-Italic.eot')
+
+@include font('Gotham Pro', normal, 900, '../fonts/GothamPro-Black.woff2', '../fonts/GothamPro-Black.woff', '../fonts/GothamPro-Black.eot')
+@include font('Gotham Pro', italic, 900, '../fonts/GothamPro-BlackItalic.woff2', '../fonts/GothamPro-BlackItalic.woff', '../fonts/GothamPro-BlackItalic.eot')
+
+@include font('Gotham Pro', normal, 700, '../fonts/GothamPro-Bold.woff2', '../fonts/GothamPro-Bold.woff', '../fonts/GothamPro-Bold.eot')
+@include font('Gotham Pro', italic, 700, '../fonts/GothamPro-BoldItalic.woff2', '../fonts/GothamPro-BoldItalic.woff', '../fonts/GothamPro-BoldItalic.eot')
+
+@include font('Gotham Pro', normal, 300, '../fonts/GothamPro-Light.woff2', '../fonts/GothamPro-Light.woff', '../fonts/GothamPro-Light.eot')
+@include font('Gotham Pro', italic, 300, '../fonts/GothamPro-LightItalic.woff2', '../fonts/GothamPro-LightItalic.woff', '../fonts/GothamPro-LightItalic.eot')
+
+@include font('Gotham Pro', normal, 500, '../fonts/GothamPro-Medium.woff2', '../fonts/GothamPro-Medium.woff', '../fonts/GothamPro-Medium.eot')
+@include font('Gotham Pro', italic, 500, '../fonts/GothamPro-MediumItalic.woff2', '../fonts/GothamPro-MediumItalic.woff', '../fonts/GothamPro-MediumItalic.eot')
+
+@include font('Gotham Pro Narrow', normal, 700, '../fonts/GothamProNarrow-Bold.woff2', '../fonts/GothamProNarrow-Bold.woff', '../fonts/GothamProNarrow-Bold.eot')
+@include font('Gotham Pro Narrow', italic, 700, '../fonts/GothamProNarrow-BoldItalic.woff2', '../fonts/GothamProNarrow-BoldItalic.woff', '../fonts/GothamProNarrow-BoldItalic.eot')
+
+@include font('Gotham Pro Narrow', normal, 500, '../fonts/GothamProNarrow-Medium.woff2', '../fonts/GothamProNarrow-Medium.woff', '../fonts/GothamProNarrow-Medium.eot')
+@include font('Gotham Pro Narrow', italic, 500, '../fonts/GothamProNarrow-MediumItalic.woff2', '../fonts/GothamProNarrow-MediumItalic.woff', '../fonts/GothamProNarrow-MediumItalic.eot')
+
+// IMPORT SECTION
+@import 'node_modules/bootstrap/scss/bootstrap-reboot.scss' // Bootstrap Reboot collection
+@import 'node_modules/swiper/swiper.scss' // Swiper
+
+// COMMON DOCUMENT STYLES
+body
+    position: relative
+    overflow-x: hidden
+    font-family: $gothampro
+    font-size: $primary-font-size
+    font-weight: 300
+    color: $primary-color
+
+ul,
+ol,
+li
+    display: block
+    padding: 0
+    margin: 0
+    list-style: none
+
+h1, h2, h3, h4, h5, h6
+    color: #000
+    margin: 0
+
+h2
+    font-size: 35px
+
+p
+    margin: 0
+    letter-spacing: 1px
+
+a
+    color: inherit
+    transition: all 0.5s
+    &:hover
+        color: inherit
+        text-decoration: none
+
+img
+    max-width: 100%
+
+section
+    position: relative
+
+.scroll-disabled
+    overflow: hidden
+
+.container
+    margin: 0 auto
+    max-width: 1920px
+
+.section-heading
+    position: absolute
+    top: 160px
+    font-weight: bold
+    letter-spacing: 3px
+    text-transform: uppercase
+    color: #000
+    writing-mode: vertical-lr
+    transform: rotate(180deg)
+    &::after
+        content: ''
+        display: inline-block
+        margin-top: 30px
+        width: 3px
+        height: 44px
+        background: #000
+
+@media (min-width: 1600px)
+    .section-heading
+        right: 5%
+
+@media (max-width: 1599px)
+    .section-heading
+        right: 4%

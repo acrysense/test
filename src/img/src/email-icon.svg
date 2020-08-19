@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 17" width="25" height="17">
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #000000 } 
+	</style>
+	<g id="7 - contacts">
+		<g id="contacts">
+			<g id="links">
+				<g id="mail">
+					<path id="Forma 1" class="shp0" d="M0 0L0 17L25 17L25 0L0 0ZM12.5 10.5L2.25 1.26L22.75 1.26L12.5 10.5ZM8.42 8.5L1.23 14.97L1.23 2.02L8.42 8.5ZM9.35 9.34L12.5 12.18L15.65 9.34L22.76 15.74L2.24 15.74L9.35 9.34ZM16.58 8.5L23.77 2.02L23.77 14.97L16.58 8.5Z" />
+				</g>
+			</g>
+		</g>
+	</g>
+</svg>

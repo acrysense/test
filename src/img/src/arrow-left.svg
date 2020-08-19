@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 18" width="10" height="18">
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #000000 } 
+	</style>
+	<g id="6 - reviews">
+		<g id="slider">
+			<g id="controls">
+				<g id="control">
+					<path id="Shape 2 copy" class="shp0" d="M0.36 9.89L7.91 17.63C8.39 18.12 9.17 18.12 9.65 17.63C10.13 17.13 10.13 16.34 9.65 15.84L2.97 8.99L9.65 2.14C10.13 1.65 10.13 0.85 9.65 0.36C9.17 -0.13 8.39 -0.13 7.91 0.36L0.36 8.1C0.12 8.35 0 8.67 0 8.99C0 9.32 0.12 9.64 0.36 9.89Z" />
+				</g>
+			</g>
+		</g>
+	</g>
+</svg>
