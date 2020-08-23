@@ -45,33 +45,45 @@
         color: #000
 
 .hamburger
+    display: inline-block
     position: absolute
     z-index: 100
-    display: block
-    background: transparent
+    padding: 0
+    margin: 0
+    min-width: 26px
+    height: 26px
+    font-size: 0
+    text-align: center
+    background: none
     border: none
+    cursor: pointer
     &:focus
         outline: none
     &--active
         .hamburger__inner
             background: #fff
             &:first-child
+                top: 10px
+                transform: rotate(45deg)
+            &:nth-child(2)
                 width: 0
                 opacity: 0
-            &:nth-child(2)
-                position: absolute
-                margin: 0
-                transform: rotate(-45deg)
             &:last-child
-                transform: rotate(45deg)
+                top: 10px
+                transform: rotate(-45deg)
     &__inner
         display: block
-        width: 26px
+        position: absolute
+        width: 100%
         height: 3px
         background: #000
-        transition: all 0.5s ease
+        transition: all 0.5s ease-in-out
+        &:first-child
+            top: 0
         &:nth-child(2)
-            margin: 6px 0
+            top: 10px
+        &:last-child
+            top: 20px
 
 .overlay
     position: fixed
@@ -143,6 +155,10 @@
         align-items: center
         overflow: hidden
         max-width: 290px
+    &__img
+        min-width: 63px
+        width: 63px
+        text-align: center
     &__title
         overflow: hidden
         max-height: 21px
@@ -164,10 +180,6 @@
         min-width: 225px
         height: 76px
         background: #fff
-        cursor: pointer
-        transition: all 0.5s ease
-        &:hover
-            box-shadow: 0 2px 14px rgba(0,0,0,0.1)
     &__day
         font-size: 35px
         font-weight: bold
@@ -227,10 +239,12 @@
 .accordion
     background: #f8f8f8
     &__item
-        background: #fff
+        position: relative
+        transition: all 0.5s ease
         &--active .accordion__content
-            display: block
-            animation: sweep 1s ease-in-out
+            visibility: visible
+            opacity: 1
+            transform: translateY(0)
         &--active .accordion__detail::after
             background: $yellow url(../img/dist/accordion-arrow.svg) no-repeat center
             transform: rotate(180deg)
@@ -240,6 +254,9 @@
         display: flex
         justify-content: space-between
         align-items: center
+        position: relative
+        z-index: 1
+        background: #fff
         border-top: 1px solid rgba(#000, 0.1)
         border-bottom: 1px solid rgba(#000, 0.1)
         transition: all 0.5s ease
@@ -274,7 +291,12 @@
             background: url(../img/dist/accordion-arrow.svg) no-repeat center
             transition: all 0.5s ease
     &__content
-        display: none
+        position: absolute
+        visibility: hidden
+        opacity: 0
+        transform: translateY(-161px)
+        background: #fff
+        z-index: 0
         transition: all 0.5s ease
     &__subtitle
         margin-bottom: 10px
@@ -283,6 +305,12 @@
         text-transform: uppercase
     &__description
         padding-bottom: 50px
+
+@keyframes leaf-odd-grow
+  0%
+    transform: scale(0)
+  100%
+    transform: scale(1)
 
 // STYLES OF THE TIMETABLE SECTION
 .timetable
@@ -347,7 +375,8 @@
         text-align: center
 
 // STYLES OF THE REVIEWS SECTION
-.swiper-container
+.reviews__slider
+    margin: 0 auto
     max-width: 1200px
     width: 80%
 
@@ -464,41 +493,65 @@
     margin-top: 60px
     max-width: 660px
     width: 75%
-    &__input
-        display: block
-        padding: 25px 0
-        width: 100%
+    &__label
+        margin-top: 25px
+        margin-bottom: 4px
         font-weight: bold
         text-transform: uppercase
+        color: #000
+    &__input
+        display: block
+        width: 100%
         color: #000
         background: transparent
         border: none
         border-bottom: 4px solid #f0f0f0
+        transition: all 0.5s ease
         &:focus
             outline: none
+            &::placeholder
+                color: #000
+                opacity: 1
         &::placeholder
-            color: #000
+            opacity: 0
     &__input + &__input
         margin-top: 5px
-    &__wrapper
+    &__radio-group
         display: flex
         justify-content: space-between
         margin-top: 50px
-    &__question
+    &__help
         font-weight: bold
         letter-spacing: 3px
         text-transform: uppercase
         color: #000
-    &__block
+    &__checkboxes
         display: flex
-    &__group + &__group
+    &__btn
+        display: block
+        padding: 20px 45px
+        margin-top: 30px
+        font-weight: bold
+        text-transform: uppercase
+        background: $yellow
+        border: none
+        transition: all 0.5s ease
+        &:hover
+            transform: scale(0.95)
+
+.custom-checkbox
+    margin-bottom: 0
+    cursor: pointer
+    &:last-child
         margin-left: 20px
-    &__radio
+    &__input
         position: absolute
         opacity: 0
-        &:checked + .contact-form__new-radio::before
+        &:checked + .custom-checkbox__icon::before
             opacity: 1
-    &__new-radio
+        &:checked ~ .custom-checkbox__label
+            color: #000
+    &__icon
         display: inline-block
         position: relative
         margin-right: 15px
@@ -506,7 +559,9 @@
         height: 18px
         vertical-align: middle
         background: #f0f0f0
+        border: 2px solid #f0f0f0
         border-radius: 50%
+        transition: border 0.5s ease
         &::before
             content: ''
             display: block
@@ -520,17 +575,6 @@
             background: $yellow
             border-radius: 50%
             transition: all 0.5s ease
-    &__btn
-        display: block
-        padding: 20px 45px
-        margin-top: 30px
-        font-weight: bold
-        text-transform: uppercase
-        background: $yellow
-        border: none
-        transition: all 0.5s ease
-        &:hover
-            transform: scale(0.95)
 
 // ANIMATION
 @keyframes fadeInRight
@@ -541,12 +585,6 @@
         left: 0
         transform: rotate(0deg)
         opacity: 1
-
-@keyframes sweep
-  0%
-      opacity: 0
-  100%
-      opacity: 1
 
 // MEDIA QUERIES
 @media (min-width: 1600px)
@@ -570,14 +608,14 @@
         &__list
             width: 45%
     .contact-form
-        &__question
+        &__help
             width: 233px
 
 @media (max-width: 1599px)
     .contact-form
-        &__wrapper
+        &__radio-group
             flex-direction: column
-        &__block
+        &__checkboxes
             margin-top: 15px
 
 @media (min-width: 1200px) and (max-width: 1599px)
@@ -727,8 +765,6 @@
                 margin-top: 30px
         &__right
             width: 45%
-    .contact-form
-        margin-bottom: 170px
 
 @media (min-width: 768px)
     .main
@@ -913,8 +949,9 @@
             padding: 50px 35px 0 0
         td
             padding: 10px 35px
-    .swiper-container
-        padding: 200px 0 140px
+    .reviews
+        &__slider
+            padding: 200px 0 140px
 
 @media (max-width: 575px)
     .main
@@ -955,5 +992,6 @@
                 padding: 6px 6px
                 max-height: 23px
                 white-space: nowrap
-    .swiper-container
-        padding: 100px 0 70px
+    .reviews
+        &__slider
+            padding: 100px 0 70px

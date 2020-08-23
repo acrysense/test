@@ -19,12 +19,18 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll('.accordion__trigger').forEach((item) =>
         item.addEventListener('click', () => {
             const parent = item.parentNode
+            const content = document.querySelector('.accordion__content')
 
             if (parent.classList.contains('accordion__item--active')) {
                 parent.classList.remove('accordion__item--active')
+                parent.style.marginBottom = ''
             } else {
-                document.querySelectorAll('.accordion__item').forEach((child) => child.classList.remove('accordion__item--active'))
+                document.querySelectorAll('.accordion__item').forEach((child) => {
+                    child.classList.remove('accordion__item--active')
+                    child.style.marginBottom = ''
+                })
                 parent.classList.add('accordion__item--active')
+                parent.style.marginBottom = content.offsetHeight + 'px'
             }
         })
     )
@@ -41,4 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
             prevEl: '.swiper-button-prev',
         }
     })
+
+    // INPUTMASK
+    Inputmask().mask(document.querySelectorAll("input"));
 });

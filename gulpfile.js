@@ -11,7 +11,8 @@ let paths = {
     },
     scripts: {
 		src: [
-			'node_modules/swiper/swiper-bundle.min.js',
+            'node_modules/swiper/swiper-bundle.min.js',
+            'node_modules/inputmask/dist/inputmask.min.js',
 			baseDir + '/js/app.js'
 		],
 		dest: baseDir + '/js',
