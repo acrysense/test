@@ -1,4 +1,5 @@
 @import "config" // Always at the beginning
+@import "swiper"
 
 // STYLES OF THE MAIN SECTION
 .main
@@ -114,8 +115,6 @@
                 animation-delay: 0.6s
             &:nth-of-type(4)
                 animation-delay: 0.7s
-            &:nth-of-type(5)
-                animation-delay: 0.8s
 
 .nav
     position: absolute
@@ -306,12 +305,6 @@
     &__description
         padding-bottom: 50px
 
-@keyframes leaf-odd-grow
-  0%
-    transform: scale(0)
-  100%
-    transform: scale(1)
-
 // STYLES OF THE TIMETABLE SECTION
 .timetable
     padding: 190px 0
@@ -379,45 +372,6 @@
     margin: 0 auto
     max-width: 1200px
     width: 80%
-
-.swiper-bottom
-    display: flex
-    align-items: center
-    justify-content: space-between
-    margin-top: 115px
-
-.swiper-pagination-fraction
-    font-size: 18px
-    font-weight: 500
-    color: #c8c8c8
-
-.swiper-pagination-current
-    font-size: 30px
-    color: #000
-
-.swiper-buttons
-    display: flex
-    align-items: center
-
-.swiper-button-prev,
-.swiper-button-next
-    position: static
-    height: 36px
-    width: 36px
-    background: $yellow
-    background-repeat: no-repeat
-    background-position: center
-    border: none
-
-.swiper-button-disabled
-    background-color: #fff
-
-.swiper-button-prev
-    background-image: url(../img/dist/arrow-left.svg)
-
-.swiper-button-next
-    margin-left: 10px
-    background-image: url(../img/dist/arrow-right.svg)
 
 .reviews
     border-bottom: 1px solid #e9e9eb
@@ -711,22 +665,6 @@
         &__list
             width: 75%
 
-@media (max-width: 991px)
-    .hamburger
-        top: 20px
-        right: 20px
-    .contacts
-        &__wrapper
-            flex-direction: column-reverse
-        &__left,
-        &__right
-            width: 100%
-        &__left
-            iframe
-                width: 100%
-    .social
-        margin-bottom: 50px
-
 @media (min-width: 992px)
     .hamburger
         top: 40px
@@ -766,30 +704,21 @@
         &__right
             width: 45%
 
-@media (min-width: 768px)
-    .main
+@media (max-width: 991px)
+    .hamburger
+        top: 20px
+        right: 20px
+    .contacts
         &__wrapper
-            padding-right: 2%
-            padding-left: 6.5%
-    .start
-        padding: 120px 0
-        &__title
-            margin: 0 auto
-            width: 220px
-    .offer
-        &__description
-            margin-top: 50px
-    .schedule
-        &__info-icon
-            margin-right: 100px
-        &__info-block
-            right: 185px
-    .format
-        &__type
-            margin-top: 50px
-    .reviews
-        &__content
-            width: 70%
+            flex-direction: column-reverse
+        &__left,
+        &__right
+            width: 100%
+        &__left
+            iframe
+                width: 100%
+    .social
+        margin-bottom: 50px
 
 @media (min-width: 768px) and (max-width: 1199px)
     .accordion
@@ -846,6 +775,31 @@
     .format
         &__list
             width: 85%
+
+@media (min-width: 768px)
+    .main
+        &__wrapper
+            padding-right: 2%
+            padding-left: 6.5%
+    .start
+        padding: 120px 0
+        &__title
+            margin: 0 auto
+            width: 220px
+    .offer
+        &__description
+            margin-top: 50px
+    .schedule
+        &__info-icon
+            margin-right: 100px
+        &__info-block
+            right: 185px
+    .format
+        &__type
+            margin-top: 50px
+    .reviews
+        &__content
+            width: 70%
 
 @media (max-width: 767px)
     .main
